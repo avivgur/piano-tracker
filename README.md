@@ -89,6 +89,32 @@ See `hardware/README.md` for wiring the Raspberry Pi to the piano and running `m
 
 For production connectivity across the dashboards, backend, and hardware, see `DEPLOYMENT.md`.
 
+## Configuration
+
+Each component ships a safe `.env.example`. Copy it locally and supply your own values — never commit real credentials or production tokens.
+
+**Backend** (`backend/.env`):
+
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `SECRET_KEY` | JWT signing secret |
+| `OPENAI_API_KEY` | Optional — required only for AI-generated reports |
+
+**Frontend** (`frontend/*/.env.local`):
+
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_API_URL` | URL of the FastAPI backend |
+
+**Hardware** (environment for `midi_listener.py`):
+
+| Variable | Purpose |
+|---|---|
+| `API_URL` | Session-ingestion endpoint |
+| `DEVICE_ID` | Stable identifier for the connected device |
+| `STUDENT_ID` | Optional fallback student identifier |
+
 ## Notes
 
 Active practice sessions are held in memory in the current version; a production deployment would move them to a persistent store. See `DEPLOYMENT.md` for details.
